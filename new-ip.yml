@@ -15,7 +15,7 @@
      gcp_compute_address:
          state: present
          name: 'test-address1'
-         region: 'us-west1'
+         region: "{{ region }}"
          project: "{{ project }}"
          auth_kind: "{{ auth_kind }}"
          service_account_file: "{{ service_account_file }}"
