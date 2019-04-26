@@ -1,14 +1,13 @@
-- name: Create an instance
+- name: Create a machine
   hosts: localhost
   gather_facts: no
   connection: local
   vars:
-      project: my-project
+      project: smec-build
       auth_kind: serviceaccount
-      service_account_file: /home/my_account.json
-      zone: "us-central1-a"
-      region: "us-central1"
-
+      service_account_file: /srv/key.json
+      zone: "europe-west1-b"
+      region: "europe-west1"
   tasks:
    - name: create a disk
      gcp_compute_disk:
@@ -16,9 +15,9 @@
          size_gb: 50
          source_image: 'projects/ubuntu-os-cloud/global/images/family/ubuntu-1604-lts'
          zone: "{{ zone }}"
-         project: "{{ gcp_project }}"
-         auth_kind: "{{ gcp_cred_kind }}"
-         service_account_file: "{{ gcp_cred_file }}"
+         project: "{{ project }}"
+         auth_kind: "{{ auth_kind }}"
+         service_account_file: "{{ service_account_file }}"
          scopes:
            - https://www.googleapis.com/auth/compute
          state: present
@@ -26,9 +25,9 @@
    - name: create a network
      gcp_compute_network:
          name: 'network-instance'
-         project: "{{ gcp_project }}"
-         auth_kind: "{{ gcp_cred_kind }}"
-         service_account_file: "{{ gcp_cred_file }}"
+         project: "{{ project }}"
+         auth_kind: "{{ auth_kind }}"
+         service_account_file: "{{ service_account_file }}"
          scopes:
            - https://www.googleapis.com/auth/compute
          state: present
@@ -37,9 +36,9 @@
      gcp_compute_address:
          name: 'address-instance'
          region: "{{ region }}"
-         project: "{{ gcp_project }}"
-         auth_kind: "{{ gcp_cred_kind }}"
-         service_account_file: "{{ gcp_cred_file }}"
+         project: "{{ project }}"
+         auth_kind: "{{ auth_kind }}"
+         service_account_file: "{{ service_account_file }}"
          scopes:
            - https://www.googleapis.com/auth/compute
          state: present
@@ -60,9 +59,9 @@
                    nat_ip: "{{ address }}"
                    type: 'ONE_TO_ONE_NAT'
          zone: "{{ zone }}"
-         project: "{{ gcp_project }}"
-         auth_kind: "{{ gcp_cred_kind }}"
-         service_account_file: "{{ gcp_cred_file }}"
+         project: "{{ project }}"
+         auth_kind: "{{ auth_kind }}"
+         service_account_file: "{{ service_account_file }}"
          scopes:
            - https://www.googleapis.com/auth/compute
      register: instance
