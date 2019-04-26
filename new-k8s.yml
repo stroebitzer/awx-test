@@ -11,14 +11,22 @@
   tasks:
     - name: create a cluster
       gcp_container_cluster:
-        name: "test"
+        name: "test-cluster"
+        zone: "{{ zone }}"
+        project: "{{ project }}"
+        auth_kind: "{{ auth_kind }}"
+        service_account_file: "{{ service_account_file }}"
+        state: present
+      register: cluster
+    - name: create a node pool
+      gcp_container_node_pool:
+        name: "test_nodepool"
         initial_node_count: 1
-        master_auth:
-          username: cluster_admin
-          password: my-secret-password
-        node_config:
-          machine_type: n1-standard-2
-          disk_size_gb: 100
+        autoscaling:
+          enabled: true
+          max_node_count: 2
+          min_node_count: 1
+        cluster: "{{ cluster }}"
         zone: "{{ zone }}"
         project: "{{ project }}"
         auth_kind: "{{ auth_kind }}"
