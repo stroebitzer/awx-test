@@ -21,7 +21,7 @@
       register: cluster
     - name: create a node pool
       gcp_container_node_pool:
-        name: "test_nodepool"
+        name: "test-nodepool"
         initial_node_count: 1
         autoscaling:
           enabled: true
