@@ -64,7 +64,7 @@
         service_account_file: "{{ service_account_file }}"
         scopes:
           - https://www.googleapis.com/auth/compute
-        register: instance
+      register: instance
 
     - name: Wait for SSH to come up
       wait_for: host={{ instance.address }} port=22 delay=10 timeout=60
