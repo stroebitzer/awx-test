@@ -12,6 +12,7 @@
     - name: create a cluster
       gcp_container_cluster:
         name: "test-cluster"
+        initial_node_count: 1
         zone: "{{ zone }}"
         project: "{{ project }}"
         auth_kind: "{{ auth_kind }}"
