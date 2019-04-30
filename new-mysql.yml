@@ -1,14 +1,25 @@
-- name: create a instance
-  gcp_sql_instance:
-      name: "test_object"
-      settings:
-        ip_configuration:
-          authorized_networks:
-          - name: google dns server
-            value: 8.8.8.8/32
-        tier: db-n1-standard-1
-      region: us-central1
-      project: "test_project"
-      auth_kind: "service_account"
-      service_account_file: "/tmp/auth.pem"
-      state: present
+- name: Create a MSql DB
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  vars:
+      project: smec-build
+      auth_kind: serviceaccount
+      service_account_file: /srv/key.json
+      zone: "europe-west1-b"
+      region: "europe-west1"
+  tasks:
+    - name: Create a instance
+      gcp_sql_instance:
+          name: "hust-test-db"
+          settings:
+            ip_configuration:
+              authorized_networks:
+                - name: google dns server
+                  value: 8.8.8.8/32
+            tier: db-n1-standard-1
+          region: " {{ region }} "
+          project: "{{ project }}"
+          auth_kind: "{{ auth_kind }}"
+          service_account_file: "{{ service_account_file }}"
+          state: present
