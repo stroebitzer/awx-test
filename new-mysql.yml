@@ -12,7 +12,7 @@
     - name: Create an instance
       gcp_sql_instance:
         name: "{{ mysql-name }}"
-        database_version: "MYSQL_5_7"
+        database_version: MYSQL_5_7
         settings:
           ip_configuration:
             authorized_networks:
