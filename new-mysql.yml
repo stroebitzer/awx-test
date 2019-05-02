@@ -1,4 +1,4 @@
-- name: Create a MSql 
+- name: Create a MySql 
   hosts: localhost
   gather_facts: no
   connection: local
@@ -9,7 +9,7 @@
     zone: "europe-west1-b"
     region: "europe-west1"
   tasks:
-    - name: Create an instance
+    - name: Create a MySql
       gcp_sql_instance:
         name: hust_test_123
         region: "{{ region }}"
