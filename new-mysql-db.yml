@@ -13,7 +13,7 @@
       gcp_sql_database:
           name: "{{ mysql_db_name }}"
           charset: utf8mb4
-          instance: test
+          instance: { "name": "test" }
           project: "{{ project }}"
           auth_kind: "{{ auth_kind }}"
           service_account_file: "{{ service_account_file }}"
