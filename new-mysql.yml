@@ -19,7 +19,7 @@
               - name: smec
                 value: 83.164.131.240/29
           tier: db-n1-standard-1
-        region: " {{ region }} "
+        zone: "{{ zone }}"
         project: "{{ project }}"
         auth_kind: "{{ auth_kind }}"
         service_account_file: "{{ service_account_file }}"
