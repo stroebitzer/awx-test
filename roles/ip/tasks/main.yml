@@ -3,7 +3,7 @@
   - name: Allocate an IP Address
     gcp_compute_address:
       state: present
-      name: "DELETE_ME"
+      name: "delete-me"
       region: "{{ region }}"
       project: "{{ project }}"
       auth_kind: "{{ auth_kind }}"
