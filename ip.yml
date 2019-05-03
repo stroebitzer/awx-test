@@ -1,6 +1,14 @@
 ---
 
   - name: IPs
-    hosts: all
+    hosts: localhost
+    gather_facts: no
+    connection: local
+    vars:
+      project: smec-build
+      auth_kind: serviceaccount
+      service_account_file: /srv/key.json
+      zone: "europe-west1-b"
+      region: "europe-west1"
     roles:
       - ip
