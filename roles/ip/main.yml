@@ -3,18 +3,18 @@
   gather_facts: no
   connection: local
   vars:
-      project: smec-build
-      auth_kind: serviceaccount
-      service_account_file: /srv/key.json
-      zone: "europe-west1-b"
-      region: "europe-west1"
+    project: smec-build
+    auth_kind: serviceaccount
+    service_account_file: /srv/key.json
+    zone: "europe-west1-b"
+    region: "europe-west1"
   tasks:
-   - name: Allocate an IP Address
-     gcp_compute_address:
-         state: present
-         name: "{{ ip_name }}"
-         region: "{{ region }}"
-         project: "{{ project }}"
-         auth_kind: "{{ auth_kind }}"
-         service_account_file: "{{ service_account_file }}"
-   
+    - name: Allocate an IP Address
+      gcp_compute_address:
+        state: present
+        name: "{{ ip_name }}"
+        region: "{{ region }}"
+        project: "{{ project }}"
+        auth_kind: "{{ auth_kind }}"
+        service_account_file: "{{ service_account_file }}"
+    
