@@ -1,0 +1,6 @@
+---
+
+  - name: IPs
+    hosts: all
+    roles:
+      - ip
