@@ -12,3 +12,10 @@
       region: "europe-west1"
     roles:
       - ip
+
+  - hosts: localhost
+    tasks:
+      - name: Test that my module works
+        hust: 
+        register: result
+      - debug: var=result         
